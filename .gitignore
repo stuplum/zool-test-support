@@ -3,4 +3,5 @@
 node_modules
 
 *.iml
+/test/target
 *.log

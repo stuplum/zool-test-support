@@ -59,6 +59,20 @@ describe('temp-dir', function () {
 
     });
 
+    it('should create a nexted text file', function () {
+
+        // Given:
+            const tempDir = new TempDir(targetDirectory);
+
+        // When:
+            tempDir.create({ 'child/child.txt': 'some text' });
+
+        // Then:
+            const filePath = `${mockOsTmpDir}/${targetDirectory}/some-lon/some-long-guid/child/child.txt`;
+            expect(fs.readFileSync(filePath, 'utf-8')).to.equal('some text');
+
+    });
+
     it('should create a json file', function () {
 
         // Given:

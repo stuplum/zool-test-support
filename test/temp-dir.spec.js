@@ -32,13 +32,30 @@ describe('temp-dir', function () {
         rimraf.sync(`${mockOsTmpDir}/${targetDirectory}`);
     });
 
-    it('should expose location of files', function () {
+    it('should expose the base directory where files are kept', function () {
 
         // Given:
             const tempDir = new TempDir(targetDirectory);
 
-        // When:
-            tempDir.create({ 'some.txt': 'some text' });
+        // Then:
+            expect(tempDir.baseDir).to.equal(mockOsTmpDir);
+
+    });
+
+    it('should expose the location of files', function () {
+
+        // Given:
+            const tempDir = new TempDir(targetDirectory);
+
+        // Then:
+            expect(tempDir.location).to.equal(`${targetDirectory}/some-lon/some-long-guid`);
+
+    });
+
+    it('should expose full path of files', function () {
+
+        // Given:
+            const tempDir = new TempDir(targetDirectory);
 
         // Then:
             expect(tempDir.path).to.equal(`${mockOsTmpDir}/${targetDirectory}/some-lon/some-long-guid`);
